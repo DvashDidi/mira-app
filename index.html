@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About MIRA — Aesthetic Intelligence</title>
+<meta name="description" content="What MIRA does, why it exists, and how the technology works — including how we use artificial intelligence.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Assistant:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f7f8fc; --surface:#ffffff; --border:#e8ecf4;
+  --ink:#1a2332; --muted:#66718a; --soft:#8d99ae;
+  --blue:#3a8ef6; --deep:#2b6ed9; --sky:#56b5f0;
+  --navy:#152238; --navy2:#1d2f4d;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans','Assistant',sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;font-size:16px}
+html[dir=rtl] body{font-family:'Assistant','DM Sans',sans-serif}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+a{color:inherit;text-decoration:none}
+
+/* nav */
+nav{position:sticky;top:0;z-index:50;background:rgba(247,248,252,.88);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.nav-in{display:flex;align-items:center;gap:16px;height:64px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:3px;font-size:17px}
+.logo-mark{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,var(--sky),var(--blue) 50%,var(--deep));display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(58,142,246,.35)}
+.logo-mark svg{width:18px;height:18px}
+.nav-spacer{flex:1}
+.lang-btn{border:1px solid var(--border);background:var(--surface);border-radius:999px;padding:8px 16px;font-family:inherit;font-size:13.5px;font-weight:600;color:var(--muted);cursor:pointer;transition:border-color .15s,color .15s}
+.lang-btn:hover{border-color:var(--blue);color:var(--blue)}
+.btn{display:inline-block;background:linear-gradient(135deg,var(--blue),var(--deep));color:#fff;border:0;border-radius:12px;padding:11px 22px;font-family:inherit;font-size:14.5px;font-weight:600;cursor:pointer;box-shadow:0 4px 14px rgba(58,142,246,.35);transition:transform .15s,box-shadow .15s}
+.btn:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(58,142,246,.45)}
+.btn:focus-visible,.lang-btn:focus-visible{outline:3px solid rgba(58,142,246,.5);outline-offset:2px}
+
+/* hero */
+.hero{padding:72px 0 64px}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center}
+h1{font-size:clamp(32px,4.6vw,48px);line-height:1.12;font-weight:700;letter-spacing:-.5px;margin-bottom:18px}
+.hero p.sub{font-size:18px;color:var(--muted);max-width:34em;margin-bottom:14px}
+.hero p.sub2{font-size:15.5px;color:var(--soft);max-width:36em;margin-bottom:28px}
+.hero .btn{font-size:15.5px;padding:13px 28px}
+
+/* phone mockups */
+.phone{width:250px;background:#0e1524;border-radius:36px;padding:12px;box-shadow:0 24px 60px rgba(26,35,50,.22);flex:none}
+.screen{background:var(--bg);border-radius:26px;overflow:hidden;height:500px;display:flex;flex-direction:column}
+.p-top{display:flex;align-items:center;gap:8px;padding:14px 14px 10px;background:#fff;border-bottom:1px solid var(--border)}
+.p-dot{width:24px;height:24px;border-radius:8px;background:linear-gradient(135deg,var(--sky),var(--deep))}
+.p-title{font-size:11px;font-weight:700;letter-spacing:1.6px}
+.p-sub{font-size:8.5px;color:var(--soft);letter-spacing:.6px}
+.p-body{flex:1;padding:12px;display:flex;flex-direction:column;gap:10px}
+.face-box{position:relative;border-radius:14px;overflow:hidden;background:linear-gradient(160deg,#e7edf8,#dbe4f4);flex:1;min-height:0}
+.face{position:absolute;inset:0;margin:auto;width:62%;height:78%}
+.chip{position:absolute;background:#fff;border:1px solid var(--border);border-radius:8px;padding:4px 8px;font-size:8.5px;font-weight:600;color:var(--ink);box-shadow:0 4px 10px rgba(26,35,50,.10)}
+.chip b{color:var(--blue)}
+.p-row{background:#fff;border:1px solid var(--border);border-radius:12px;padding:9px 11px;display:flex;justify-content:space-between;align-items:center}
+.p-row .l{font-size:10px;font-weight:600}
+.p-row .l small{display:block;font-weight:400;font-size:8.5px;color:var(--soft)}
+.p-row .v{font-size:10px;font-weight:700;color:var(--deep)}
+.bar{height:5px;border-radius:3px;background:#e8ecf4;overflow:hidden}
+.bar i{display:block;height:100%;border-radius:3px;background:linear-gradient(90deg,var(--sky),var(--blue))}
+.split{position:absolute;inset:0;display:flex}
+.split>div{flex:1;position:relative}
+.split .aft{border-inline-start:2px solid #fff}
+.tag{position:absolute;top:10px;background:rgba(26,35,50,.78);color:#fff;font-size:8.5px;font-weight:600;padding:3px 8px;border-radius:6px;letter-spacing:.5px}
+.tag.l{inset-inline-start:10px}
+.tag.r{inset-inline-end:10px}
+.handle{position:absolute;top:0;bottom:0;left:50%;width:2px;background:#fff}
+.handle::after{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:26px;height:26px;border-radius:50%;background:#fff;box-shadow:0 4px 12px rgba(26,35,50,.3);background-image:linear-gradient(90deg,transparent 44%,#c6cede 44%,#c6cede 47%,transparent 47%,transparent 53%,#c6cede 53%,#c6cede 56%,transparent 56%)}
+.p-cta{background:linear-gradient(135deg,var(--blue),var(--deep));color:#fff;border-radius:12px;text-align:center;font-size:10.5px;font-weight:700;padding:10px}
+
+/* sections */
+section{padding:64px 0}
+.sec-head{max-width:640px;margin-bottom:40px}
+h2{font-size:clamp(24px,3.2vw,32px);line-height:1.2;font-weight:700;letter-spacing:-.3px;margin-bottom:12px}
+.sec-head p{color:var(--muted);font-size:16.5px}
+
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.step{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px 20px}
+.step .n{width:30px;height:30px;border-radius:9px;background:linear-gradient(135deg,var(--sky),var(--deep));color:#fff;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;margin-bottom:14px}
+.step h3{font-size:16px;margin-bottom:6px}
+.step p{font-size:13.5px;color:var(--muted)}
+
+/* why */
+.why{background:var(--surface);border-block:1px solid var(--border)}
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.why-grid p.big{font-size:20px;line-height:1.55;color:var(--ink)}
+.why-grid p.big b{color:var(--deep)}
+.why-note{font-size:13px;color:var(--soft);margin-top:14px}
+.why-cards{display:flex;flex-direction:column;gap:12px}
+.wcard{border:1px solid var(--border);border-radius:14px;padding:16px 18px;background:var(--bg)}
+.wcard h4{font-size:15px;margin-bottom:3px}
+.wcard p{font-size:13.5px;color:var(--muted)}
+
+/* technology — the AI transparency panel */
+.tech-panel{background:linear-gradient(160deg,var(--navy),var(--navy2));border-radius:24px;padding:56px;color:#dfe7f4}
+.tech-panel h2{color:#fff}
+.tech-panel .intro{font-size:17px;max-width:44em;color:#c3cfe2;margin-bottom:36px}
+.tech-panel .intro b{color:#fff}
+.tech-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.tcard{background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:22px}
+.tcard h3{color:#fff;font-size:16px;margin-bottom:7px}
+.tcard p{font-size:13.5px;color:#b9c6dc}
+.tech-foot{margin-top:28px;padding-top:22px;border-top:1px solid rgba(255,255,255,.12);font-size:13px;color:#9fb0ca;max-width:56em}
+
+/* screens gallery */
+.gallery{display:flex;gap:32px;justify-content:center;flex-wrap:wrap}
+.shot{text-align:center}
+.shot figcaption{margin-top:16px;font-size:14px;color:var(--muted);font-weight:600}
+
+/* cta */
+.cta{padding:80px 0}
+.cta-box{background:var(--surface);border:1px solid var(--border);border-radius:24px;padding:56px;text-align:center;box-shadow:0 20px 60px rgba(26,35,50,.07)}
+.cta-box h2{margin-bottom:10px}
+.cta-box p{color:var(--muted);margin-bottom:26px;font-size:16.5px}
+.cta-box .btn{font-size:16px;padding:14px 34px}
+
+/* footer */
+footer{border-top:1px solid var(--border);padding:32px 0 40px}
+.foot-in{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;font-size:13px;color:var(--soft)}
+.disclaimer{font-size:12px;color:var(--soft);max-width:60em;margin-top:10px}
+
+@media (max-width:900px){
+  .hero-grid,.why-grid,.tech-grid{grid-template-columns:1fr}
+  .hero-grid{gap:40px}
+  .hero .phone{margin:0 auto}
+  .steps{grid-template-columns:1fr 1fr}
+  .tech-panel{padding:36px 24px}
+  .cta-box{padding:40px 24px}
+}
+@media (max-width:520px){.steps{grid-template-columns:1fr}}
+
+/* pipeline */
+.pipe{display:flex;align-items:stretch;gap:0;overflow-x:auto;padding:8px 0}
+.pnode{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:16px 14px;min-width:128px;flex:1;text-align:center}
+.pnode .ic{width:34px;height:34px;border-radius:10px;margin:0 auto 10px;background:linear-gradient(135deg,var(--sky),var(--deep));display:flex;align-items:center;justify-content:center}
+.pnode .ic svg{width:17px;height:17px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.pnode h4{font-size:12.5px;margin-bottom:3px}
+.pnode p{font-size:10.5px;color:var(--soft);line-height:1.4}
+.parrow{display:flex;align-items:center;padding:0 6px;color:#b7c3d9;flex:none}
+.parrow svg{width:16px;height:16px}
+html[dir=rtl] .parrow svg{transform:scaleX(-1)}
+.pnode.qa{border-color:#d8b56a;background:#fffdf6}
+.pnode.qa .ic{background:linear-gradient(135deg,#e3b95e,#c9922e)}
+
+/* metrics + stack */
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:30px}
+.metric{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:16px;text-align:center}
+.metric .mv{font-size:24px;font-weight:700;color:#fff}
+.metric .ml{font-size:11.5px;color:#9fb0ca;margin-top:3px;line-height:1.4}
+.badges{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.badge{display:flex;align-items:center;gap:7px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:999px;padding:7px 14px;font-size:12px;color:#cdd8ea}
+.badge svg{width:13px;height:13px;stroke:#7fb1f5;fill:none;stroke-width:2;stroke-linecap:round}
+
+/* calibration loop */
+.loop-wrap{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.loop{position:relative;width:300px;height:300px;margin:0 auto}
+.loop .ring{position:absolute;inset:34px;border:2px dashed #c7d3e8;border-radius:50%}
+.lnode{position:absolute;width:118px;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:10px;text-align:center;box-shadow:0 8px 20px rgba(26,35,50,.08)}
+.lnode h5{font-size:11.5px;margin-bottom:2px}
+.lnode p{font-size:9.5px;color:var(--soft);line-height:1.35}
+.lnode.n1{top:0;left:50%;transform:translateX(-50%)}
+.lnode.n2{top:50%;right:0;transform:translateY(-50%)}
+.lnode.n3{bottom:0;left:50%;transform:translateX(-50%)}
+.lnode.n4{top:50%;left:0;transform:translateY(-50%)}
+.loop-side h2{margin-bottom:12px}
+.loop-side p{color:var(--muted);margin-bottom:14px}
+.loop-side .pt{display:flex;gap:10px;margin-bottom:10px;font-size:14px;color:var(--ink)}
+.loop-side .pt::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--blue);margin-top:7px;flex:none}
+@media (max-width:900px){.loop-wrap{grid-template-columns:1fr}.metrics{grid-template-columns:1fr 1fr}.pipe{flex-wrap:nowrap}}
+
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<nav><div class="wrap nav-in">
+  <a class="logo" href="https://miramatch.ai">
+    <span class="logo-mark"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><circle cx="9" cy="10" r=".5" fill="#fff"/><circle cx="15" cy="10" r=".5" fill="#fff"/></svg></span>
+    MIRA
+  </a>
+  <div class="nav-spacer"></div>
+  <button class="lang-btn" id="langBtn" aria-label="Switch language">עברית</button>
+  <a class="btn" href="https://miramatch.ai" data-en="Open MIRA" data-he="לאפליקציה">Open MIRA</a>
+</div></nav>
+
+<header class="hero"><div class="wrap hero-grid">
+  <div>
+    <h1 data-en="See the result before the treatment." data-he="לראות את התוצאה לפני הטיפול.">See the result before the treatment.</h1>
+    <p class="sub" data-en="MIRA shows people a photorealistic simulation of an aesthetic treatment — on their own photo — before they ever sit in a doctor's chair." data-he="מירה מראה לאנשים הדמיה פוטוריאליסטית של טיפול אסתטי — על התמונה שלהם עצמם — עוד לפני שישבו על כיסא הרופא.">MIRA shows people a photorealistic simulation of an aesthetic treatment — on their own photo — before they ever sit in a doctor's chair.</p>
+    <p class="sub2" data-en="This page explains what the product does, why it exists, and how the technology works — including how we use artificial intelligence." data-he="הדף הזה מסביר מה המוצר עושה, למה הוא קיים, ואיך הטכנולוגיה עובדת — כולל איך אנחנו משתמשים בבינה מלאכותית.">This page explains what the product does, why it exists, and how the technology works — including how we use artificial intelligence.</p>
+    <a class="btn" href="https://miramatch.ai" data-en="Try it on your photo" data-he="נסו על תמונה שלכם">Try it on your photo</a>
+  </div>
+  <div class="phone"><div class="screen">
+    <div class="p-top"><div class="p-dot"></div><div><div class="p-title">MIRA</div><div class="p-sub" data-en="SIMULATION" data-he="הדמיה">SIMULATION</div></div></div>
+    <div class="p-body">
+      <div class="face-box" id="heroBox">
+        <div class="split" style="display:block">
+          <div style="position:absolute;inset:0;background:linear-gradient(160deg,#dde5f3,#cdd9ee)"></div>
+          <div class="aft" id="heroAfter" style="position:absolute;inset:0;border:0;background:linear-gradient(160deg,#e9eefa,#dbe6f6);clip-path:inset(0 0 0 50%)"></div>
+        </div>
+        <svg class="face" viewBox="0 0 100 130" fill="none" stroke="#9fb0ce" stroke-width="2.5" stroke-linecap="round">
+          <ellipse cx="50" cy="52" rx="30" ry="38"/>
+          <path d="M20 52 q-4 14 6 26 M80 52 q4 14 -6 26"/>
+          <path d="M26 90 q24 26 48 0"/>
+          <path d="M36 46 q6 -5 12 0 M52 46 q6 -5 12 0"/>
+          <path d="M47 56 q3 8 -1 12 q3 3 8 1" opacity=".8"/>
+          <path d="M38 78 q12 9 24 0" opacity=".8"/>
+        </svg>
+        <div class="tag l" data-en="Before" data-he="לפני">Before</div>
+        <div class="tag r" data-en="After" data-he="אחרי">After</div>
+        <div class="handle" id="heroHandle"></div>
+        <input type="range" id="heroRange" min="8" max="92" value="50" aria-label="Before / after slider" style="position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;touch-action:none">
+      </div>
+      <div class="p-row"><div class="l" data-en="Nasolabial folds" data-he="קמטי הבעה"><span data-en="Nasolabial folds" data-he="קמטי הבעה">Nasolabial folds</span><small data-en="Hyaluronic filler · 1.0 ml" data-he="חומצה היאלורונית · 1.0 מ״ל">Hyaluronic filler · 1.0 ml</small></div><div class="v">92%</div></div>
+      <div class="p-cta" data-en="View full treatment plan" data-he="לתוכנית הטיפול המלאה">View full treatment plan</div>
+    </div>
+  </div></div>
+</div></header>
+
+<section><div class="wrap">
+  <div class="sec-head">
+    <h2 data-en="What the app does" data-he="מה האפליקציה עושה">What the app does</h2>
+    <p data-en="One photo in, a complete visual consultation out — in minutes." data-he="תמונה אחת נכנסת, ייעוץ ויזואלי שלם יוצא — תוך דקות.">One photo in, a complete visual consultation out — in minutes.</p>
+  </div>
+  <div class="steps">
+    <div class="step"><div class="n">1</div><h3 data-en="Upload a photo" data-he="מעלים תמונה">Upload a photo</h3><p data-en="A regular selfie from any phone. No special equipment, no scanner, no clinic visit." data-he="סלפי רגיל מכל טלפון. בלי ציוד מיוחד, בלי סורק, בלי ביקור בקליניקה.">A regular selfie from any phone. No special equipment, no scanner, no clinic visit.</p></div>
+    <div class="step"><div class="n">2</div><h3 data-en="Automated analysis" data-he="ניתוח אוטומטי">Automated analysis</h3><p data-en="The system detects treatable areas — wrinkles, folds, volume loss, facial structure — and scores each one." data-he="המערכת מזהה אזורים ברי-טיפול — קמטים, קפלים, אובדן נפח, מבנה פנים — ומדרגת כל אחד מהם.">The system detects treatable areas — wrinkles, folds, volume loss, facial structure — and scores each one.</p></div>
+    <div class="step"><div class="n">3</div><h3 data-en="Photorealistic simulation" data-he="הדמיה פוטוריאליסטית">Photorealistic simulation</h3><p data-en="A before/after preview of the expected result, rendered on the person's own photo — not an avatar, not a generic model." data-he="תצוגת לפני/אחרי של התוצאה הצפויה, על התמונה של המשתמש עצמו — לא אווטאר ולא מודל גנרי.">A before/after preview of the expected result, rendered on the person's own photo — not an avatar, not a generic model.</p></div>
+    <div class="step"><div class="n">4</div><h3 data-en="Treatment plan &amp; report" data-he="תוכנית טיפול ודוח">Treatment plan &amp; report</h3><p data-en="Recommended treatments, realistic market price ranges, and a report the person can take to a physician." data-he="טיפולים מומלצים, טווחי מחירים ריאליים בשוק, ודוח שאפשר לקחת לרופא.">Recommended treatments, realistic market price ranges, and a report the person can take to a physician.</p></div>
+  </div>
+</div></section>
+
+<section id="pipeline"><div class="wrap">
+  <div class="sec-head">
+    <h2 data-en="Under the hood: the simulation pipeline" data-he="מתחת למכסה: צינור ההדמיה">Under the hood: the simulation pipeline</h2>
+    <p data-en="Every photo travels through six stages. Each stage is a separate, replaceable component — engines compete, the best one per treatment wins." data-he="כל תמונה עוברת שישה שלבים. כל שלב הוא רכיב נפרד ובר-החלפה — המנועים מתחרים, והטוב ביותר לכל טיפול מנצח.">Every photo travels through six stages. Each stage is a separate, replaceable component — engines compete, the best one per treatment wins.</p>
+  </div>
+  <div class="pipe">
+    <div class="pnode"><div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5-11 11"/></svg></div><h4 data-en="Photo intake" data-he="קליטת תמונה">Photo intake</h4><p data-en="Standard selfie, quality &amp; pose checks" data-he="סלפי רגיל, בדיקות איכות וזווית">Standard selfie, quality &amp; pose checks</p></div>
+    <div class="parrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+    <div class="pnode"><div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/><circle cx="12" cy="12" r="3"/></svg></div><h4 data-en="Vision analysis" data-he="ניתוח ראייה">Vision analysis</h4><p data-en="Facial mapping, indication detection" data-he="מיפוי פנים וזיהוי אינדיקציות">Facial mapping, indication detection</p></div>
+    <div class="parrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+    <div class="pnode"><div class="ic"><svg viewBox="0 0 24 24"><path d="M4 19V9M10 19V5M16 19v-8M22 19H2"/></svg></div><h4 data-en="Severity scoring" data-he="דירוג חומרה">Severity scoring</h4><p data-en="Each area scored, prioritized" data-he="כל אזור מדורג ומתועדף">Each area scored, prioritized</p></div>
+    <div class="parrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+    <div class="pnode"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 3v6M12 9l-6 4M12 9l6 4M6 13v5M18 13v5"/><circle cx="12" cy="4" r="1.5"/><circle cx="6" cy="19" r="1.5"/><circle cx="18" cy="19" r="1.5"/></svg></div><h4 data-en="Engine routing" data-he="ניתוב מנועים">Engine routing</h4><p data-en="Best generative engine per treatment type" data-he="המנוע הגנרטיבי הטוב ביותר לכל סוג טיפול">Best generative engine per treatment type</p></div>
+    <div class="parrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+    <div class="pnode"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 2l2.4 5.3L20 8l-4 4 1 5.7-5-2.7-5 2.7L8 12 4 8l5.6-.7z"/></svg></div><h4 data-en="Generative simulation" data-he="הדמיה גנרטיבית">Generative simulation</h4><p data-en="Photorealistic render on the user's photo" data-he="רינדור פוטוריאליסטי על תמונת המשתמש">Photorealistic render on the user's photo</p></div>
+    <div class="parrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+    <div class="pnode qa"><div class="ic"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div><h4 data-en="Physician QA" data-he="בקרת רופא">Physician QA</h4><p data-en="Blind-rated realism, continuous calibration" data-he="דירוג עיוור של ריאליזם וכיול מתמשך">Blind-rated realism, continuous calibration</p></div>
+  </div>
+</div></section>
+
+<section class="why"><div class="wrap why-grid">
+  <div>
+    <h2 data-en="Why it exists" data-he="למה זה קיים">Why it exists</h2>
+    <p class="big" data-en="Most people considering an aesthetic treatment can't decide from words alone. In a published clinical survey of 2,378 patients, the visual simulation was the key decision factor for 58% of them. When people see themselves, deciding takes days instead of years." data-he="רוב האנשים ששוקלים טיפול אסתטי לא מצליחים להחליט ממילים בלבד. בסקר קליני שפורסם בקרב 2,378 מטופלים, ההדמיה הוויזואלית הייתה גורם ההחלטה המרכזי אצל 58% מהם. כשאנשים רואים את עצמם — ההחלטה לוקחת ימים במקום שנים.">Most people considering an aesthetic treatment can't decide from words alone. In a published clinical survey of 2,378 patients, the visual simulation was the key decision factor for <b>58%</b> of them. When people see themselves, deciding takes days instead of years.</p>
+    <p class="why-note" data-en="Source: Crisalix clinical survey, 2017 — 2,378 patients, 449 clinics, 50 countries." data-he="מקור: סקר קליני של Crisalix,‏ 2017 — 2,378 מטופלים, 449 קליניקות, 50 מדינות.">Source: Crisalix clinical survey, 2017 — 2,378 patients, 449 clinics, 50 countries.</p>
+  </div>
+  <div class="why-cards">
+    <div class="wcard"><h4 data-en="For people" data-he="לאנשים">For people</h4><p data-en="Understand what's possible, what it looks like on you, and what it should cost — before committing to anything." data-he="להבין מה אפשרי, איך זה נראה עליכם, וכמה זה אמור לעלות — לפני שמתחייבים לכלום.">Understand what's possible, what it looks like on you, and what it should cost — before committing to anything.</p></div>
+    <div class="wcard"><h4 data-en="For physicians" data-he="לרופאים">For physicians</h4><p data-en="Patients arrive educated, with realistic expectations and a visual starting point for the consultation." data-he="מטופלים מגיעים מיודעים, עם ציפיות ריאליות ונקודת פתיחה ויזואלית לייעוץ.">Patients arrive educated, with realistic expectations and a visual starting point for the consultation.</p></div>
+    <div class="wcard"><h4 data-en="Not a diagnosis" data-he="לא אבחנה">Not a diagnosis</h4><p data-en="MIRA is a visualization and education tool. Every treatment decision belongs to a licensed physician." data-he="מירה היא כלי המחשה והנגשת מידע. כל החלטת טיפול שייכת לרופא מוסמך בלבד.">MIRA is a visualization and education tool. Every treatment decision belongs to a licensed physician.</p></div>
+  </div>
+</div></section>
+
+<section id="technology"><div class="wrap">
+  <div class="tech-panel">
+    <h2 data-en="The technology — and how we use AI" data-he="הטכנולוגיה — ואיך אנחנו משתמשים ב-AI">The technology — and how we use AI</h2>
+    <p class="intro" data-en="MIRA is built on artificial intelligence, and we're transparent about it: every simulation and analysis in the product is AI-generated. Here is what runs under the hood." data-he="מירה בנויה על בינה מלאכותית, ואנחנו שקופים לגבי זה: כל הדמיה וכל ניתוח במוצר מיוצרים על ידי AI. הנה מה שרץ מתחת למכסה המנוע.">MIRA is built on <b>artificial intelligence</b>, and we're transparent about it: every simulation and analysis in the product is <b>AI-generated</b>. Here is what runs under the hood.</p>
+    <div class="tech-grid">
+      <div class="tcard"><h3 data-en="AI visual analysis" data-he="ניתוח ויזואלי מבוסס AI">AI visual analysis</h3><p data-en="Vision models map the face, detect treatable indications, and score their severity — the input for every recommendation." data-he="מודלי ראייה ממפים את הפנים, מזהים אינדיקציות ברות-טיפול ומדרגים את חומרתן — הבסיס לכל המלצה.">Vision models map the face, detect treatable indications, and score their severity — the input for every recommendation.</p></div>
+      <div class="tcard"><h3 data-en="Generative simulation engines" data-he="מנועי הדמיה גנרטיביים">Generative simulation engines</h3><p data-en="Generative AI image models render the expected outcome directly on the user's photo, per treatment, at photorealistic quality. Each treatment type runs on the engine that performs best for it." data-he="מודלים גנרטיביים לתמונה מייצרים את התוצאה הצפויה ישירות על תמונת המשתמש, פר טיפול, באיכות פוטוריאליסטית. כל סוג טיפול רץ על המנוע שמדויק ביותר עבורו.">Generative AI image models render the expected outcome directly on the user's photo, per treatment, at photorealistic quality. Each treatment type runs on the engine that performs best for it.</p></div>
+      <div class="tcard"><h3 data-en="Physician in the loop" data-he="רופא בתוך הלולאה">Physician in the loop</h3><p data-en="A practicing aesthetic physician reviews and rates simulation quality in blind tests. The AI is calibrated against clinical judgment — continuously." data-he="רופא אסתטי פעיל בוחן ומדרג את איכות ההדמיות במבחנים עיוורים. ה-AI מכויל מול שיפוט קליני — באופן מתמשך.">A practicing aesthetic physician reviews and rates simulation quality in blind tests. The AI is calibrated against clinical judgment — continuously.</p></div>
+      <div class="tcard"><h3 data-en="Privacy &amp; safety" data-he="פרטיות ובטיחות">Privacy &amp; safety</h3><p data-en="Photos are processed securely and used only to produce the user's own analysis and simulation. Results are presented as a visualization aid — never as medical advice or a guaranteed outcome." data-he="התמונות מעובדות באופן מאובטח ומשמשות רק להפקת הניתוח וההדמיה של המשתמש עצמו. התוצאות מוצגות ככלי המחשה — לעולם לא כייעוץ רפואי או כהבטחת תוצאה.">Photos are processed securely and used only to produce the user's own analysis and simulation. Results are presented as a visualization aid — never as medical advice or a guaranteed outcome.</p></div>
+    </div>
+    <div class="metrics">
+      <div class="metric"><div class="mv">4.6/5</div><div class="ml" data-en="Physician-rated simulation realism" data-he="ריאליזם הדמיה בדירוג רופא">Physician-rated simulation realism</div></div>
+      <div class="metric"><div class="mv">&lt;10s</div><div class="ml" data-en="In-consultation correction time" data-he="זמן תיקון בתוך הייעוץ">In-consultation correction time</div></div>
+      <div class="metric"><div class="mv">6+</div><div class="ml" data-en="Engines orchestrated per analysis" data-he="מנועים מתוזמרים בכל ניתוח">Engines orchestrated per analysis</div></div>
+      <div class="metric"><div class="mv">14</div><div class="ml" data-en="Facial areas analyzed per photo" data-he="אזורי פנים מנותחים בכל תמונה">Facial areas analyzed per photo</div></div>
+    </div>
+    <div class="badges">
+      <div class="badge"><svg viewBox="0 0 24 24"><path d="M17 18a5 5 0 000-10 7 7 0 00-13 2 4 4 0 001 8z"/></svg><span data-en="Cloud-native infrastructure" data-he="תשתית ענן">Cloud-native infrastructure</span></div>
+      <div class="badge"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg><span data-en="Managed PostgreSQL" data-he="PostgreSQL מנוהל">Managed PostgreSQL</span></div>
+      <div class="badge"><svg viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg><span data-en="Secure authentication" data-he="אימות מאובטח">Secure authentication</span></div>
+      <div class="badge"><svg viewBox="0 0 24 24"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/></svg><span data-en="Encryption in transit &amp; at rest" data-he="הצפנה בתעבורה ובאחסון">Encryption in transit &amp; at rest</span></div>
+      <div class="badge"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 20V9"/></svg><span data-en="Tenant isolation &amp; audit trail" data-he="בידוד נתונים ויומן ביקורת">Tenant isolation &amp; audit trail</span></div>
+    </div>
+    <p class="tech-foot" data-en="In short: MIRA orchestrates multiple AI models — analysis, generation, and language — into one clinical-grade flow, with a physician calibrating the system's quality. AI-generated content is what makes the product possible, and we label it as such." data-he="בקצרה: מירה מתזמרת כמה מודלי AI — ניתוח, ג'נרציה ושפה — לזרימה קלינית אחת, עם רופא שמכייל את איכות המערכת. תוכן מיוצר-AI הוא מה שמאפשר את המוצר, ואנחנו מסמנים אותו ככזה.">In short: MIRA orchestrates multiple AI models — analysis, generation, and language — into one clinical-grade flow, with a physician calibrating the system's quality. AI-generated content is what makes the product possible, and we label it as such.</p>
+  </div>
+</div></section>
+
+<section><div class="wrap loop-wrap">
+  <div class="loop">
+    <div class="ring"></div>
+    <div class="lnode n1"><h5 data-en="Simulate" data-he="הדמיה">Simulate</h5><p data-en="Engine renders a result" data-he="המנוע מייצר תוצאה">Engine renders a result</p></div>
+    <div class="lnode n2"><h5 data-en="Blind rating" data-he="דירוג עיוור">Blind rating</h5><p data-en="Physician scores realism 1–5" data-he="רופא מדרג ריאליזם 1–5">Physician scores realism 1–5</p></div>
+    <div class="lnode n3"><h5 data-en="Calibrate" data-he="כיול">Calibrate</h5><p data-en="Prompts &amp; engine choice adjusted" data-he="כוונון פרומפטים ובחירת מנוע">Prompts &amp; engine choice adjusted</p></div>
+    <div class="lnode n4"><h5 data-en="Re-measure" data-he="מדידה מחדש">Re-measure</h5><p data-en="Accuracy tracked over time" data-he="הדיוק נמדד לאורך זמן">Accuracy tracked over time</p></div>
+  </div>
+  <div class="loop-side">
+    <h2 data-en="The calibration loop" data-he="לולאת הכיול">The calibration loop</h2>
+    <p data-en="AI alone isn't enough for clinical-grade realism. MIRA's engines are calibrated in a continuous loop against the judgment of a practicing aesthetic physician." data-he="AI לבד לא מספיק לריאליזם ברמה קלינית. המנועים של מירה מכוילים בלולאה מתמשכת מול שיפוט של רופא אסתטי פעיל.">AI alone isn't enough for clinical-grade realism. MIRA's engines are calibrated in a continuous loop against the judgment of a practicing aesthetic physician.</p>
+    <div class="pt" data-en="Every engine change is measured before it ships" data-he="כל שינוי מנוע נמדד לפני שהוא עולה">Every engine change is measured before it ships</div>
+    <div class="pt" data-en="Ratings are blind — the physician doesn't know which engine produced what" data-he="הדירוג עיוור — הרופא לא יודע איזה מנוע ייצר מה">Ratings are blind — the physician doesn't know which engine produced what</div>
+    <div class="pt" data-en="Accuracy is tracked per treatment type, week over week" data-he="הדיוק נמדד לכל סוג טיפול, שבוע אחרי שבוע">Accuracy is tracked per treatment type, week over week</div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <div class="sec-head">
+    <h2 data-en="Inside the product" data-he="בתוך המוצר">Inside the product</h2>
+    <p data-en="Illustrative screens of the three core moments." data-he="מסכים להמחשה של שלושת הרגעים המרכזיים.">Illustrative screens of the three core moments.</p>
+  </div>
+  <div class="gallery">
+    <figure class="shot">
+      <div class="phone"><div class="screen">
+        <div class="p-top"><div class="p-dot"></div><div><div class="p-title">MIRA</div><div class="p-sub" data-en="ANALYSIS" data-he="ניתוח">ANALYSIS</div></div></div>
+        <div class="p-body">
+          <div class="face-box" style="flex:1.2">
+            <svg class="face" viewBox="0 0 100 130" fill="none" stroke="#9fb0ce" stroke-width="2.5" stroke-linecap="round">
+              <ellipse cx="50" cy="52" rx="30" ry="38"/><path d="M26 90 q24 26 48 0"/>
+              <path d="M36 46 q6 -5 12 0 M52 46 q6 -5 12 0"/><path d="M38 78 q12 9 24 0" opacity=".8"/>
+              <path d="M34 34 q16 -8 32 0" opacity=".6"/><path d="M30 62 q-2 6 2 10 M70 62 q2 6 -2 10" opacity=".6"/>
+            </svg>
+            <div class="chip" style="top:12%;inset-inline-start:6%"><span data-en="Forehead lines" data-he="קמטי מצח">Forehead lines</span> <b>78%</b></div>
+            <div class="chip" style="top:46%;inset-inline-end:5%"><span data-en="Crow's feet" data-he="קמטי צחוק">Crow's feet</span> <b>64%</b></div>
+            <div class="chip" style="bottom:16%;inset-inline-start:8%"><span data-en="Nasolabial" data-he="נזולביאלי">Nasolabial</span> <b>92%</b></div>
+          </div>
+          <div class="p-row"><div class="l"><span data-en="Detected areas" data-he="אזורים שזוהו">Detected areas</span><small data-en="Tap any area for detail" data-he="הקישו על אזור לפירוט">Tap any area for detail</small></div><div class="v">6</div></div>
+          <div class="bar"><i style="width:78%"></i></div>
+        </div>
+      </div></div>
+      <figcaption data-en="Automated facial analysis" data-he="ניתוח פנים אוטומטי">Automated facial analysis</figcaption>
+    </figure>
+    <figure class="shot">
+      <div class="phone"><div class="screen">
+        <div class="p-top"><div class="p-dot"></div><div><div class="p-title">MIRA</div><div class="p-sub" data-en="SIMULATION" data-he="הדמיה">SIMULATION</div></div></div>
+        <div class="p-body">
+          <div class="face-box">
+            <div class="split">
+              <div style="background:linear-gradient(160deg,#dde5f3,#cdd9ee)"></div>
+              <div class="aft" style="background:linear-gradient(160deg,#e9eefa,#dbe6f6)"></div>
+            </div>
+            <svg class="face" viewBox="0 0 100 130" fill="none" stroke="#9fb0ce" stroke-width="2.5" stroke-linecap="round">
+              <ellipse cx="50" cy="52" rx="30" ry="38"/><path d="M26 90 q24 26 48 0"/>
+              <path d="M36 46 q6 -5 12 0 M52 46 q6 -5 12 0"/><path d="M38 78 q12 9 24 0" opacity=".8"/>
+            </svg>
+            <div class="tag l" data-en="Before" data-he="לפני">Before</div>
+            <div class="tag r" data-en="After" data-he="אחרי">After</div>
+            <div class="handle"></div>
+          </div>
+          <div class="p-row"><div class="l"><span data-en="Rhinoplasty preview" data-he="הדמיית עיצוב אף">Rhinoplasty preview</span><small data-en="Slider or side-by-side view" data-he="סליידר או תצוגת לפני-ואחרי">Slider or side-by-side view</small></div><div class="v" data-en="4.6/5" data-he="4.6/5">4.6/5</div></div>
+        </div>
+      </div></div>
+      <figcaption data-en="Before / after simulation" data-he="הדמיית לפני / אחרי">Before / after simulation</figcaption>
+    </figure>
+    <figure class="shot">
+      <div class="phone"><div class="screen">
+        <div class="p-top"><div class="p-dot"></div><div><div class="p-title">MIRA</div><div class="p-sub" data-en="REPORT" data-he="דוח">REPORT</div></div></div>
+        <div class="p-body">
+          <div class="p-row"><div class="l"><span data-en="Hyaluronic filler" data-he="חומצה היאלורונית">Hyaluronic filler</span><small data-en="Nasolabial · 1.0 ml" data-he="נזולביאלי · 1.0 מ״ל">Nasolabial · 1.0 ml</small></div><div class="v">₪1,200–1,800</div></div>
+          <div class="p-row"><div class="l"><span data-en="Botulinum toxin" data-he="בוטוליניום">Botulinum toxin</span><small data-en="Forehead · 20 units" data-he="מצח · 20 יחידות">Forehead · 20 units</small></div><div class="v">₪900–1,400</div></div>
+          <div class="p-row"><div class="l"><span data-en="Skin booster" data-he="סקין בוסטר">Skin booster</span><small data-en="Full face · 2 sessions" data-he="פנים מלאות · 2 מפגשים">Full face · 2 sessions</small></div><div class="v">₪1,500–2,200</div></div>
+          <div class="face-box" style="flex:.7;display:flex;align-items:center;justify-content:center">
+            <div style="width:64px;height:64px;border-radius:10px;background:
+              conic-gradient(#1a2332 25%,transparent 0 50%,#1a2332 0 75%,transparent 0) 0 0/32px 32px,
+              repeating-linear-gradient(90deg,#1a2332 0 6px,transparent 6px 12px) center/44px 44px no-repeat,#fff;
+              border:5px solid #fff;box-shadow:0 4px 14px rgba(26,35,50,.15)"></div>
+          </div>
+          <div class="p-cta" data-en="Share report with your doctor" data-he="שיתוף הדוח עם הרופא שלך">Share report with your doctor</div>
+        </div>
+      </div></div>
+      <figcaption data-en="Treatment plan &amp; shareable report" data-he="תוכנית טיפול ודוח לשיתוף">Treatment plan &amp; shareable report</figcaption>
+    </figure>
+  </div>
+</div></section>
+
+<section class="cta"><div class="wrap">
+  <div class="cta-box">
+    <h2 data-en="See it on your own photo" data-he="תראו את זה על התמונה שלכם">See it on your own photo</h2>
+    <p data-en="Free to try. One selfie, a full analysis, and your first simulation — in minutes." data-he="חינם להתנסות. סלפי אחד, ניתוח מלא וההדמיה הראשונה שלכם — תוך דקות.">Free to try. One selfie, a full analysis, and your first simulation — in minutes.</p>
+    <a class="btn" href="https://miramatch.ai" data-en="Create your free account" data-he="פתחו חשבון חינם">Create your free account</a>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  <div class="foot-in">
+    <div><b>MIRA</b> · <span data-en="Aesthetic Intelligence" data-he="Aesthetic Intelligence">Aesthetic Intelligence</span> — MIRA Technologies Ltd.</div>
+    <div><a href="https://miramatch.ai" style="color:var(--blue);font-weight:600" data-en="miramatch.ai" data-he="miramatch.ai">miramatch.ai</a></div>
+  </div>
+  <p class="disclaimer" data-en="MIRA produces AI-generated visualizations for education and expectation-setting only. Simulations are illustrative, individual results vary, and nothing in the product constitutes medical advice, diagnosis, or a guaranteed outcome. Consult a licensed physician before any treatment." data-he="מירה מפיקה המחשות מיוצרות-AI למטרות הסברה ותיאום ציפיות בלבד. ההדמיות הן להמחשה, תוצאות משתנות מאדם לאדם, ודבר במוצר אינו מהווה ייעוץ רפואי, אבחנה או הבטחת תוצאה. יש להתייעץ עם רופא מוסמך לפני כל טיפול.">MIRA produces AI-generated visualizations for education and expectation-setting only. Simulations are illustrative, individual results vary, and nothing in the product constitutes medical advice, diagnosis, or a guaranteed outcome. Consult a licensed physician before any treatment.</p>
+</div></footer>
+
+<script>
+(function(){
+  var lang = 'en';
+  var btn = document.getElementById('langBtn');
+  function applyAll(){
+    document.documentElement.lang = lang;
+    document.documentElement.dir = lang === 'he' ? 'rtl' : 'ltr';
+    document.querySelectorAll('[data-en]').forEach(function(el){
+      if (el.children.length === 0) {
+        el.textContent = el.getAttribute('data-' + lang);
+      }
+    });
+    // rich paragraphs: rebuild with <b> kept
+    document.querySelectorAll('p.big, .tech-panel .intro, .tech-foot').forEach(function(el){
+      var t = el.getAttribute('data-' + lang);
+      if (t) el.innerHTML = t.replace('58%','<b>58%</b>').replace('artificial intelligence','<b>artificial intelligence</b>').replace('AI-generated','<b>AI-generated</b>').replace('בינה מלאכותית','<b>בינה מלאכותית</b>');
+    });
+    btn.textContent = lang === 'en' ? 'עברית' : 'English';
+    try { localStorage.setItem('mira_about_lang', lang); } catch(e){}
+  }
+  btn.addEventListener('click', function(){ lang = lang === 'en' ? 'he' : 'en'; applyAll(); });
+  try { var saved = localStorage.getItem('mira_about_lang'); if (saved === 'he') { lang = 'he'; applyAll(); } } catch(e){}
+
+  // draggable hero before/after
+  var r = document.getElementById('heroRange');
+  var aft = document.getElementById('heroAfter');
+  var hnd = document.getElementById('heroHandle');
+  if (r && aft && hnd) {
+    var upd = function(){
+      var v = r.value;
+      aft.style.clipPath = 'inset(0 0 0 ' + v + '%)';
+      hnd.style.left = v + '%';
+    };
+    r.addEventListener('input', upd);
+    upd();
+  }
+})();
+</script>
+</body>
+</html>
